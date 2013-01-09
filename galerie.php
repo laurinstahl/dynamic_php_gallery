@@ -14,12 +14,12 @@ $array_seitenzahl = array(1);		//Array das später benötigt wird, enthält Seit
 
 
 //Daten, die in Datenbank definiert sind
-$width = $array['width_table'];			//Anzahl der Bilder in der Breite
-$height = $array['height_table'];		//Anzahl der Bilder in der Höhe
+$width = $array['number_columns'];			//Anzahl der Bilder in der Breite
+$height = $array['number_rows'];		//Anzahl der Bilder in der Höhe
 $anzahl_bilder = $width*$height;		//Anzahl der Bilder pro Seite
 $bild_width = $array['width_pic'];		//Breite der einzelnen Bilder
-$spalt_breite = $array['width_spalt'];	//Multiplikator für die Spaltenbreite
-$height_zeile = $array['height_zeile'];	//Multiplikator für die Zeilenhöhe
+$spalt_breite = $array['width_column'];	//Multiplikator für die Spaltenbreite
+$height_zeile = $array['height_row'];	//Multiplikator für die Zeilenhöhe
 
 //Verschiedene Variablen die hochzählen:
 $a = 1;		//Anzahl der Bilder insgesamt (+1)
@@ -41,8 +41,8 @@ $ordner = "pictures";					//Speicherort der Bilder
 $bilder = scandir($ordner);			//Array aller Dateien, sortiert von A-Z, durchnummeriert
 
 //Überprüft Seitenzahl und definiert sie. Ohne Seitenzahl = 1
-if(isset($_GET['seite'])){
-	$seitenzahl = $_GET['seite'];}
+if(isset($_GET['page'])){
+	$seitenzahl = $_GET['page'];}
 	else {$seitenzahl = 1;}
 	
 //Abfrage, die die richtigen Bilder basierend auf der Seite anzeigt
@@ -146,8 +146,8 @@ if($seitenzahl == max($array_seitenzahl)){
 }
 echo "<br>";	//Gibt am Ende der Schleife einen Zeilenumbruch aus
 //Schleife, die die Seitenzahl ausgibt, solange Werte im Array sind - entsprechen Seitenzahl
-?> <div class="galerie_seite"> <? while(each($array_seitenzahl)){
-	echo "<a href=galerie.php?page=5&seite=$f>Seite $f</a> &nbsp;";	//gibt den Link zur Seite aus
+?> <div><? while(each($array_seitenzahl)){
+	echo "<a href=index.php?page=$f>Page $f</a> &nbsp;";	//gibt den Link zur Seite aus
 	$f++;	//Addiert 1 auf die Seitenzahl drauf
 	
 }
